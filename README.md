@@ -5,11 +5,12 @@ This README provides detailed instructions on how to set up and run the website 
 ## Prerequisites
 
 Before you begin, ensure you have the following software installed:
-- MySQL
-- Java (JDK)
+- MySQL 
+- Java (JDK) 
 - Node.js
 - NPM
 - IntelliJ IDEA (or any preferred Java IDE)
+- Redis
 
 ## Backend Setup
 
