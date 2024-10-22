@@ -12,8 +12,6 @@ Before you begin, ensure you have the following software installed:
 - Redis
 - IntelliJ IDEA (or any preferred Java IDE, but IDEA for backend code and VScode for frontend code is highly recommended)
 
-
-
 ## Backend Setup
 
 ### Step 1: Install MySQL
@@ -62,7 +60,32 @@ spring.datasource.url=jdbc:mysql://localhost:3306/your_database_name
 spring.datasource.username=root
 spring.datasource.password=your_mysql_password
 ```
-Replace `your_database_name` with the name of your database.
+Replace `your_database_name` with the name of your database and your_mysql_password with your mysql password.
+
+### Step 3: Install Redis as a service
+
+### Download Redis: 
+https://github.com/tporadowski/redis/releases. Download the .zip file of the lastest vision and unzip it.
+
+### Open Command Prompt as Administrator
+Search for CMD in the Start Menu.
+Right-click on Command Prompt and select Run as Administrator.
+
+### Navigate to the Redis Installation Directory
+Use the following command to move to the folder where Redis is installed (replace the path as needed):
+
+```
+cd C:\work\Redis
+```
+### Install Redis as a Service
+Run the following command to install Redis as a Windows service:
+```
+redis-server --service-install redis.windows-service.conf --loglevel verbose
+```
+### Start the Redis Service
+```
+net start redis
+```
 
 #### Run the Application:
 Use IntelliJ IDEA to run your Spring Boot application. This can typically be done by right-clicking on the main application file and selecting `Run`.
