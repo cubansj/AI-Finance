@@ -9,8 +9,10 @@ Before you begin, ensure you have the following software installed:
 - Java (JDK) 
 - Node.js
 - NPM
-- IntelliJ IDEA (or any preferred Java IDE)
 - Redis
+- IntelliJ IDEA (or any preferred Java IDE, We highly recommend you to use IDEA for backend code and VScode for frontend code.)
+
+
 
 ## Backend Setup
 
