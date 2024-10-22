@@ -8,7 +8,7 @@ Before you begin, ensure you have the following software installed:
 - MySQL
 - Java (JDK)
 - Node.js
-- Yarn
+- NPM
 - IntelliJ IDEA (or any preferred Java IDE)
 
 ## Backend Setup
