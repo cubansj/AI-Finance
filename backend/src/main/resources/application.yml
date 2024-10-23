@@ -18,3 +18,5 @@ mybatis:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 server:
   port: 8080
+
+openai.api.key: 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
