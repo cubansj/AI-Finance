@@ -20,7 +20,7 @@ const routes = [
     {
         path: '/', 
         component: LayoutVue,
-        redirect: '/advice',
+        redirect: '/login',
         children: [
             { path: '/advice', component: Advice },
             { path: '/advice/daily', component: DailyAdvice },
