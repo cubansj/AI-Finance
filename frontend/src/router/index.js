@@ -8,6 +8,9 @@ import DailyAdvice from '@/views/FinancialAdvice/DailyAdvice.vue'
 import InvestmentAdvice from '@/views/FinancialAdvice/InvestmentAdvice.vue'
 import Advice from '@/views/FinancialAdvice/Advice.vue'
 
+import MarketList from '../views/DocQuest/MarketList.vue'
+import Doc from '../views/DocQuest/Doc.vue'
+
 import StateManagement from '../views/FinancialState/StateManagement.vue'
 
 import { createRouter, createWebHistory } from 'vue-router'
@@ -28,7 +31,9 @@ const routes = [
             { path: '/state', component: StateManagement},
             { path: '/user/info', component: UserInfoVue },
             { path: '/user/avatar', component: UserAvatarVUe },
-            { path: '/user/password', component: UserResetPasswordVue }
+            { path: '/user/password', component: UserResetPasswordVue },
+            { path: '/docu', component: MarketList },
+            { path: '/docu/:stock/:question', component: Doc }
         ]
     }
 ]
