@@ -32,3 +32,5 @@ export const userAvatarUpdateService=(avatarUrl)=>{
   console.log('params:', params);
   return request.patch('/user/updateAvatar',params)
 }
+
+
