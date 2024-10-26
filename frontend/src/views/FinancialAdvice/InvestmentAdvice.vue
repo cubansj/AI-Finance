@@ -19,6 +19,7 @@ const aiRecommendation2 = ref('');
 
 const truncated1 = ref('');
 const truncated2 = ref('');
+const truncatedContent = ref('');
 
 const userInfo = ref(null);
 const userFinance = ref(null);
@@ -127,16 +128,28 @@ const submitForm = async (e) => {
     // 提取 AI 响应中的 content
     aiResponseContent = result.data.choices[0]?.message?.content || 'No result available';
     console.log("Content:", aiResponseContent);
-    aiContent.value = aiResponseContent.replace(/\n/g, '<br>');
+    aiContent.value = aiResponseContent
+        .replace(/###\s*(.+?)(?=\n|$)/g, '<h3>$1</h3>')
+        .replace(/##\s*(.+?)(?=\n|$)/g, '<h2>$1</h2>')
+        .replace(/#\s*(.+?)(?=\n|$)/g, '<h1>$1</h1>')
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<i>$1</i>')
+        .replace(/\n/g, '<br>');
     console.log("ContentCheck:", aiContent);
   } catch (error) {
     console.error("Error during AI request:", error);
-    aiResponseContent = "Error fetching advice. Please try again later."; // 请求失败时使用的默认内容
+    aiResponseContent = "Error fetching advice. Please try again later.";
   }
 
   // 截取前 10 个单词并在末尾添加 "..."
-  const truncatedContent = aiResponseContent.split(' ').slice(0, 10).join(' ') + (aiResponseContent.split(' ').length > 10 ? '...' : '');
-
+  truncatedContent.value = aiResponseContent.split(' ').slice(0, 10).join(' ') + (aiResponseContent.split(' ').length > 10 ? '...' : '');
+  truncatedContent.value = truncatedContent.value
+      .replace(/###\s*(.+?)(?=\n|$)/g, '<h3>$1</h3>')
+      .replace(/##\s*(.+?)(?=\n|$)/g, '<h2>$1</h2>')
+      .replace(/#\s*(.+?)(?=\n|$)/g, '<h1>$1</h1>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<i>$1</i>')
+      .replace(/\n/g, '<br>');
   // 使用截取后的内容替换 detail 字段
   const fakeResponse = {
     riskAdvice: `Your selected risk tolerance is: ${riskLevel.value}`,
@@ -146,12 +159,12 @@ const submitForm = async (e) => {
     }))
   };
 
-  displayInvestmentAdvice(fakeResponse); // 显示生成的投资建议
+  displayInvestmentAdvice(fakeResponse);
   resultsVisible.value = true;  // 确保结果部分可见
 };
 
 const confirmUserInfo = async () => {
-  let aiRecommendationContent = "No result available"; // 默认的 AI 返回内容
+  let aiRecommendationContent = "No result available";
 
   const userdata = {
     userFinance: userFinance.value,
@@ -172,13 +185,38 @@ const confirmUserInfo = async () => {
       console.log("No.1 Recommendation:", no1Recommendation);
       console.log("No.2 Recommendation:", no2Recommendation);
 
-      aiRecommendation1.value = no1Recommendation.replace(/\n/g, '<br>');
-      aiRecommendation2.value = no2Recommendation.replace(/\n/g, '<br>');
-      //console.log("No.1 Recommendation:", aiRecommendation1);
-      //console.log("No.2 Recommendation:", aiRecommendation2);
+      aiRecommendation1.value = no1Recommendation
+          .replace(/###\s*(.+?)(?=\n|$)/g, '<h3>$1</h3>')
+          .replace(/##\s*(.+?)(?=\n|$)/g, '<h2>$1</h2>')
+          .replace(/#\s*(.+?)(?=\n|$)/g, '<h1>$1</h1>')
+          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+          .replace(/\*(.+?)\*/g, '<i>$1</i>')
+          .replace(/\n/g, '<br>');
+      aiRecommendation2.value = no2Recommendation
+          .replace(/###\s*(.+?)(?=\n|$)/g, '<h3>$1</h3>')
+          .replace(/##\s*(.+?)(?=\n|$)/g, '<h2>$1</h2>')
+          .replace(/#\s*(.+?)(?=\n|$)/g, '<h1>$1</h1>')
+          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+          .replace(/\*(.+?)\*/g, '<i>$1</i>')
+          .replace(/\n/g, '<br>');
 
-      truncated1.value = no1Recommendation.split(' ').slice(0, 10).join(' ') + (no1Recommendation.split(' ').length > 10 ? '...' : '');
-      truncated2.value = no2Recommendation.split(' ').slice(0, 10).join(' ') + (no2Recommendation.split(' ').length > 10 ? '...' : '');
+
+      truncated1.value = no1Recommendation.split(' ').slice(0, 15).join(' ') + (no1Recommendation.split(' ').length > 15 ? '...' : '');
+      truncated2.value = no2Recommendation.split(' ').slice(0, 15).join(' ') + (no2Recommendation.split(' ').length > 15 ? '...' : '');
+      truncated1.value = truncated1.value
+          .replace(/###\s*(.+?)(?=\n|$)/g, '<h3>$1</h3>')
+          .replace(/##\s*(.+?)(?=\n|$)/g, '<h2>$1</h2>')
+          .replace(/#\s*(.+?)(?=\n|$)/g, '<h1>$1</h1>')
+          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+          .replace(/\*(.+?)\*/g, '<i>$1</i>')
+          .replace(/\n/g, '<br>');
+      truncated2.value = truncated2.value
+          .replace(/###\s*(.+?)(?=\n|$)/g, '<h3>$1</h3>')
+          .replace(/##\s*(.+?)(?=\n|$)/g, '<h2>$1</h2>')
+          .replace(/#\s*(.+?)(?=\n|$)/g, '<h1>$1</h1>')
+          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+          .replace(/\*(.+?)\*/g, '<i>$1</i>')
+          .replace(/\n/g, '<br>');
     } else {
       alert("error!please refresh");
       return;
@@ -260,13 +298,13 @@ onBeforeRouteLeave((to, from, next) => {
         <div class="recommendation-box hover-effect">
           <img src="@/assets/recommendation1.png" alt="Recommendation 1 Image" class="recommendation-image" />
           <h3>No.1 Recommendation</h3>
-          <p>{{truncated1}}</p>
+          <p v-html="truncated1"></p>
           <el-button type="primary" @click="showRecommendationDetail('recommendation1', aiRecommendation1 )">View Details</el-button>
         </div>
         <div class="recommendation-box hover-effect">
           <img src="@/assets/recommendation2.png" alt="Recommendation 1 Image" class="recommendation-image" />
           <h3>No.2 Recommendation</h3>
-          <p>{{truncated2}}</p>
+          <p v-html="truncated2"></p>
           <el-button type="primary" @click="showRecommendationDetail('recommendation2', aiRecommendation2 )">View Details</el-button>
         </div>
       </div>
@@ -305,7 +343,7 @@ onBeforeRouteLeave((to, from, next) => {
         <ul>
           <li v-for="asset in assetAnalysis" :key="asset.name"
               @click="router.push({ path: `/investmentplan/${asset.name}/${riskLevel}`, query: { aiContent: aiContent } })">
-            {{ asset.name }}: {{ asset.detail }}
+            {{ asset.name }}: <span v-html="asset.detail"></span>
           </li>
         </ul>
       </div>
