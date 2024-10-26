@@ -2,10 +2,14 @@
 
 There are 5 members in our project group:
 
---`Peijie Zhong`  --`530340186`
+--`Peijie Zhong`  --`530340186`  
+
 --`Ruoyu Zhai`    --`540195169`
+
 --`Jiaqi Wang`    --`530075244`
+
 --`Jinjing Miao`  --`530676889`
+
 --`Xin Wen`       --`540421563`
 
 Tasks and contributions for each of us is as follows：
