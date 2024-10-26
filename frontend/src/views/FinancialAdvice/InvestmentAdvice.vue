@@ -35,6 +35,19 @@ const goBack = () => {
   router.push('/advice');
 };
 
+router.beforeEach((to, from, next) => {
+
+  const pagesToClearData = ['/state', '/advice', '/user/info', '/user/avatar'];
+
+  if (pagesToClearData.includes(to.path)) {
+    // 清除数据，例如
+    sessionStorage.removeItem('investmentAdviceData');
+    console.log('数据已清除');
+  }
+
+  next();
+});
+
 onMounted(async () => {
 
   const savedData = sessionStorage.getItem('investmentAdviceData');
