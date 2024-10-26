@@ -30,6 +30,8 @@ instance.interceptors.response.use(
         // Check the status code
         if (result.data.code == 0) {
             return result.data;
+        } else if (result.status == 200) {
+            return result
         }
         else if (result.status == 200) {
             return result;
