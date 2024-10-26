@@ -15,6 +15,7 @@ import java.util.Map;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
+
     @Override
     public User findByUserName(String username) {
         User u = userMapper.findByUserName(username);
@@ -26,7 +27,7 @@ public class UserServiceImpl implements UserService {
         //加密
         String md5String = Md5Util.getMD5String(password);
         //添加
-        userMapper.add(username,md5String);
+        userMapper.add(username, md5String);
     }
 
     @Override
@@ -37,17 +38,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateAvatar(String avatarUrl) {
-        Map<String,Object> map = ThreadLocalUtil.get();
+        Map<String, Object> map = ThreadLocalUtil.get();
         Integer id = (Integer) map.get("id");
-        userMapper.updateAvatar(avatarUrl,id);
+        userMapper.updateAvatar(avatarUrl, id);
     }
 
     @Override
     public void updatePwd(String newPwd) {
-        Map<String,Object> map = ThreadLocalUtil.get();
+        Map<String, Object> map = ThreadLocalUtil.get();
         Integer id = (Integer) map.get("id");
-        userMapper.updatePwd(Md5Util.getMD5String(newPwd),id);
+        userMapper.updatePwd(Md5Util.getMD5String(newPwd), id);
     }
-
 
 }
