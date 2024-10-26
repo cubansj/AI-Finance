@@ -27,7 +27,7 @@ public class AIController {
     public ResponseEntity<String> askAI(@RequestBody Map<String, String> payload) {
         String prompt = payload.get("prompt");
         String response = AIService.getResponse(prompt);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(response);sss
     }
 }
 
