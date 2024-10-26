@@ -31,4 +31,7 @@ public class User {
     private String userPic;//用户头像地址
     private LocalDateTime createTime;//创建时间
     private LocalDateTime updateTime;//更新时间
+
+    private  Integer queState;  //问卷状态（0：未答题；1：已答题）
+    private  Integer score; //问卷分数
 }

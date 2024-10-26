@@ -50,4 +50,9 @@ public class UserServiceImpl implements UserService {
         userMapper.updatePwd(Md5Util.getMD5String(newPwd), id);
     }
 
+    @Override
+    public void updateScore(Integer userId, Integer score) {
+
+    }
+
 }

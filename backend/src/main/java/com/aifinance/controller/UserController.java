@@ -86,6 +86,14 @@ public class UserController {
         return Result.success();
     }
 
+    @PostMapping("/updateScore")
+    public Result updateScore(Integer userId,Integer score) {
+        userService.updateScore(userId,score);
+        System.out.println(userId);
+        System.out.println(score);
+        return Result.success();
+    }
+
     @PatchMapping("updateAvatar")
     public Result updateAvatar(@RequestParam @URL String avatarUrl) {
         userService.updateAvatar(avatarUrl);
