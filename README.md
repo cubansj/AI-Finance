@@ -1,8 +1,8 @@
-# Part1 Overview
+# Part 1 Overview
 
 ---
 
-# Part2 Configuration
+# Part 2 Configuration
 
 ## Backend Setup
 
@@ -87,7 +87,7 @@ Ensure that both the backend and frontend services are running. The backend serv
 
 ---
 
-# Part3 Deployment instructions
+# Part 3 Deployment instructions
 
 ## 1. Environment Setup
 
@@ -199,7 +199,7 @@ Core code are a below.
 
 ---
 
-# Part4 Advanced technologies used
+# Part 4 Advanced technologies used
 
 In the project, we used the following advanced technologies:
 
