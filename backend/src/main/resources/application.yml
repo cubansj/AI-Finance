@@ -3,7 +3,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/5620_aifinance
     username: root
-    password: 123456
+    password: zpj123
 #    url: jdbc:mysql://35.189.27.126:3306/aifinance
 #    username: admin
 #    password: 123
