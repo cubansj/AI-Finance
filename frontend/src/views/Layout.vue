@@ -68,7 +68,7 @@ const handleCommand = (command) => {
 <template>
     <el-container class="layout-container">
         <!-- Left-side menu -->
-        <el-aside width="400px">
+        <el-aside width="320px">
             <div class="el-aside__logo"></div>
             <el-menu active-text-color="#ffd04b" background-color="#232323" text-color="#fff" router>
                 <el-menu-item index="/state">

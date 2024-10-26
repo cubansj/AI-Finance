@@ -9,6 +9,7 @@ spring:
     password: 123
   data:
     redis:
+      #host: ${SPRING_REDIS_HOST:localhost}
       host: localhost
       port: 6379
   servlet:
