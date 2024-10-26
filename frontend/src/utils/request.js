@@ -31,6 +31,9 @@ instance.interceptors.response.use(
         if (result.data.code == 0) {
             return result.data;
         }
+        else if (result.status == 200) {
+            return result;
+        }
         ElMessage.error(result.data.msg ? result.data.msg : 'Service exception');
         return Promise.reject(result.data);
     },
