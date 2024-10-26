@@ -115,8 +115,13 @@ const submitForm = async (e) => {
 const confirmUserInfo = async () => {
   let aiRecommendationContent = "No result available"; // 默认的 AI 返回内容
 
+  const userdata = {
+    userFinance: userFinance.value,
+    userprofile: userProfile.value
+  };
+
   try {
-    let result = await AIRecommendation(userFinance.value);
+    let result = await AIRecommendation(userdata);
     aiRecommendationContent = result.data.choices[0]?.message?.content || 'No result available';
     console.log("Content:", aiRecommendationContent);
     const no1Match = aiRecommendationContent.match(/No\.1 recommendation is: (.+?)(?=No\.2 recommendation is:|$)/s);

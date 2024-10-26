@@ -25,7 +25,7 @@ export const sendAIRequest = (data) => {
 export const AIUserProfile = (userFinance) => {
     const userFinanceString = JSON.stringify(userFinance); // 将对象转为字符串
     const prompt = `Generate a user profile based on the following financial data: ${userFinanceString}
-                            .Start with 'You are'. Fewer than 100 words`;
+                            .Start with 'You'. Fewer than 100 words. Do not show the user's specific private data in the response`;
     const payload = {
         prompt: prompt
     };
@@ -40,10 +40,11 @@ export const AIUserProfile = (userFinance) => {
         });
 };
 
-export const AIRecommendation = (userFinance) => {
-    const userFinanceString = JSON.stringify(userFinance); // 将对象转为字符串
+export const AIRecommendation = (userdata) => {
+    const userFinanceString = JSON.stringify(userdata.userFinance); // 将对象转为字符串
     const prompt = `Generate two top recommendations of investment about Stocks,Bonds, Commodities or other projects based on the following financial data: ${userFinanceString}
-                            .No.1 Start with 'No.1 recommendation is: ',
+                            and the description about the user: ${userdata.userprofile}. 
+                            No.1 Start with 'No.1 recommendation is: ',
                             No.2 Start with 'No.2 recommendation is: '.`;
     const payload = {
         prompt: prompt
@@ -60,9 +61,5 @@ export const AIRecommendation = (userFinance) => {
 };
 
 export const fetchUserDetailsService = () => {
-    return request.get('/user/details', {
-        params: {
-            username: username
-        }
-    });
+    return request.get('/user/details');
 };

@@ -20,7 +20,7 @@ public class UserDetailsController {
 
     @GetMapping("/details")
     public Result<Map<String, Object>> getUserDetails() {
-        // 查询用户基本信息
+
         Map<String, Object> map = ThreadLocalUtil.get();
         String username = (String) map.get("username");
         User user = userMapper.findByUserName(username);
@@ -38,5 +38,4 @@ public class UserDetailsController {
 
         return Result.success(userDetails);
     }
-
 }
