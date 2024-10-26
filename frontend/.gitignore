@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-backend/.idea/.gitignore
-backend/.idea/dataSources.xml
-backend/.idea/encodings.xml
-backend/.idea/misc.xml
-backend/.idea/uiDesigner.xml
-backend/.idea/vcs.xml
-=======
 # Logs
 logs
 *.log
@@ -34,4 +26,3 @@ coverage
 *.njsproj
 *.sln
 *.sw?
->>>>>>> ba47ff84eb24d378597c964f1dcc2b27dc81be62

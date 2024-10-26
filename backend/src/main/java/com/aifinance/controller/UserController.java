@@ -86,6 +86,7 @@ public class UserController {
         return Result.success();
     }
 
+<<<<<<< HEAD
     @PostMapping("/updateScore")
     public Result updateScore(Integer userId,Integer score) {
         userService.updateScore(userId,score);
@@ -94,6 +95,8 @@ public class UserController {
         return Result.success();
     }
 
+=======
+>>>>>>> ba47ff84eb24d378597c964f1dcc2b27dc81be62
     @PatchMapping("updateAvatar")
     public Result updateAvatar(@RequestParam @URL String avatarUrl) {
         userService.updateAvatar(avatarUrl);

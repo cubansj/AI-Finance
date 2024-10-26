@@ -12,9 +12,12 @@ public interface UserService {
     //更新
     void update(User user);
 
+<<<<<<< HEAD
     //提交问卷
     void updateScore(Integer userId, Integer score);
 
+=======
+>>>>>>> ba47ff84eb24d378597c964f1dcc2b27dc81be62
     //更新头像
     void updateAvatar(String avatarUrl);
 

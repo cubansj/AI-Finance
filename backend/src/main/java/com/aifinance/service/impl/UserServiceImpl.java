@@ -36,12 +36,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+<<<<<<< HEAD
     public void updateScore(Integer userId, Integer score) {
         userMapper.updateScore(userId,score);
     }
 
 
     @Override
+=======
+>>>>>>> ba47ff84eb24d378597c964f1dcc2b27dc81be62
     public void updateAvatar(String avatarUrl) {
         Map<String,Object> map = ThreadLocalUtil.get();
         Integer id = (Integer) map.get("id");

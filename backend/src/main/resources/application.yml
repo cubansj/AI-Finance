@@ -1,11 +1,23 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+<<<<<<< HEAD
     url: jdbc:mysql://localhost:3306/5620_aifinance
     username: root
     password: qwasde123
   data:
     redis:
+=======
+    #url: jdbc:mysql://localhost:3306/5620_aifinance
+    #username: root
+    #password: zpj123
+    url: jdbc:mysql://35.189.27.126:3306/aifinance
+    username: admin
+    password: 123
+  data:
+    redis:
+      #host: ${SPRING_REDIS_HOST:localhost}
+>>>>>>> ba47ff84eb24d378597c964f1dcc2b27dc81be62
       host: localhost
       port: 6379
   servlet:
