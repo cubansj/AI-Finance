@@ -173,7 +173,6 @@ const confirmUserInfo = async () => {
 
   } catch (error) {
     console.error("Error during AI request:", error);
-    aiRecommendationContent = "Error fetching advice. Please try again later."; // 请求失败时使用的默认内容
   }
 
   showRecommendations.value = true;
@@ -272,7 +271,7 @@ onBeforeRouteLeave((to, from, next) => {
         </select>
 
         <!-- 资产组合选择 -->
-        <label>Select Investment Combinations:</label>
+        <label>Select The type of Financial Product:</label>
         <label class="label-container">
           Stocks <input type="checkbox" v-model="selectedAssets" value="stocks">
         </label>
@@ -415,16 +414,9 @@ button:hover {
   justify-content: space-between;
   margin-top: 20px;
   gap: 20px;
+  align-items: stretch;
 }
 
-.recommendation-box {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 15px;
-  width: 45%;
-  text-align: center;
-}
 
 @keyframes growShrink {
   from {
@@ -444,13 +436,17 @@ h2.recommendations-title {
 
 
 .recommendation-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* 将按钮推到底部 */
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 15px;
   width: 45%;
   text-align: center;
-  position: relative; /* 可以用于稍后调整图片位置 */
+  flex-grow: 1;
 }
 
 .recommendation-image {
@@ -463,5 +459,6 @@ h2.recommendations-title {
   transform: scale(1.05);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
+
 
 </style>
