@@ -10,15 +10,18 @@ import Advice from '@/views/FinancialAdvice/Advice.vue'
 
 import StateManagement from '../views/FinancialState/StateManagement.vue'
 
+import InvestmentRecommendation from '@/views/FinancialAdvice/InvestmentRecommendation.vue'
+import InvestmentPlan from '@/views/FinancialAdvice/InvestmentPlan.vue'
+
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
     {
-        path: '/login', 
-        component: LoginVue 
+        path: '/login',
+        component: LoginVue
     },
     {
-        path: '/', 
+        path: '/',
         component: LayoutVue,
         redirect: '/advice',
         children: [
@@ -28,7 +31,9 @@ const routes = [
             { path: '/state', component: StateManagement},
             { path: '/user/info', component: UserInfoVue },
             { path: '/user/avatar', component: UserAvatarVUe },
-            { path: '/user/password', component: UserResetPasswordVue }
+            { path: '/user/password', component: UserResetPasswordVue },
+            { path: '/recommendation/:recommendation', component: InvestmentRecommendation },
+            { path: '/investmentplan/:asset/:riskLevel', component: InvestmentPlan }
         ]
     }
 ]

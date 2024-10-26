@@ -1,6 +1,7 @@
 package com.aifinance.mapper;
 
 import com.aifinance.pojo.User;
+import com.aifinance.pojo.UserFinance;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -25,4 +26,7 @@ public interface UserMapper {
 
     @Update("update user set password=#{md5String},update_time=now() where id=#{id}")
     void updatePwd(String md5String, Integer id);
+
+    @Select("SELECT * FROM user_finance WHERE user_id = #{userId}")
+    UserFinance findFinanceByUserId(Integer userId);
 }
