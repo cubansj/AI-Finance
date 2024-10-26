@@ -204,7 +204,7 @@ Core code are a below.
 In the project, we used the following advanced technologies:
 
 **Application Frameworks**
-`springboot` for backend development  
+`Springboot` for backend development  
 `vue.js` for frontend development  
 
 **Cloud Services**
@@ -214,6 +214,9 @@ In the project, we used the following advanced technologies:
 **Deployment Systems** 
 `Docker` for deployment  
 `Nginx` as a reverse proxy server.
+
+**AI tools**
+`OpenAI api` for generating AI contents
 
 **Cache Database**
 `redis` for JWT Token active invalidation.
