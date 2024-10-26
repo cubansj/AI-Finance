@@ -4,6 +4,8 @@ import { useRouter } from 'vue-router';
 import { sendAIRequest , AIUserProfile , AIRecommendation } from '@/api/investment.js';
 import { fetchUserDetailsService } from '@/api/investment.js';
 
+import { onBeforeRouteLeave } from 'vue-router';
+
 const router = useRouter();
 
 const selectedAssets = ref([]);
@@ -23,14 +25,37 @@ const userFinance = ref(null);
 const errorMessage = ref(null);
 const showRecommendations = ref(false);
 
-
 const userProfile  = ref(null);
 // 返回到之前的页面
+let isReturning = false;
 const goBack = () => {
+  isReturning = true;
+  sessionStorage.removeItem('investmentAdviceData');
+  console.log("Session storage cleared:", sessionStorage.getItem('investmentAdviceData'));
   router.push('/advice');
 };
 
 onMounted(async () => {
+
+  const savedData = sessionStorage.getItem('investmentAdviceData');
+  console.log('Loaded data from sessionStorage:', savedData);
+  if (savedData) {
+    const parsedData = JSON.parse(savedData);
+    selectedAssets.value = parsedData.selectedAssets || [];
+    riskLevel.value = parsedData.riskLevel || '';
+    riskAdvice.value = parsedData.riskAdvice || '';
+    assetAnalysis.value = parsedData.assetAnalysis || [];
+    aiContent.value = parsedData.aiContent || '';
+    aiRecommendation1.value = parsedData.aiRecommendation1 || '';
+    aiRecommendation2.value = parsedData.aiRecommendation2 || '';
+    truncated1.value = parsedData.truncated1 || '';
+    truncated2.value = parsedData.truncated2 || '';
+    showRecommendations.value = parsedData.showRecommendations || false;
+    resultsVisible.value = parsedData.resultsVisible || false;
+    userProfile.value = parsedData.userProfile || '';
+    return;
+  }
+
   try {
     //const username = 'xinwen';
     const response = await fetchUserDetailsService();
@@ -168,6 +193,29 @@ const showRecommendationDetail = (recommendation, content) => {
     query: { content }
   });
 };
+
+onBeforeRouteLeave((to, from, next) => {
+  if (!isReturning){
+      console.log('onBeforeRouteLeave triggered');
+      const dataToSave = {
+      selectedAssets: selectedAssets.value,
+      riskLevel: riskLevel.value,
+      riskAdvice: riskAdvice.value,
+      assetAnalysis: assetAnalysis.value,
+      aiContent: aiContent.value,
+      aiRecommendation1: aiRecommendation1.value,
+      aiRecommendation2: aiRecommendation2.value,
+      truncated1: truncated1.value,
+      truncated2: truncated2.value,
+      showRecommendations: showRecommendations.value,
+      resultsVisible: resultsVisible.value,
+      userProfile: userProfile.value
+    };
+    sessionStorage.setItem('investmentAdviceData', JSON.stringify(dataToSave));
+    console.log('Data saved to sessionStorage:', dataToSave);
+  }
+  next();
+});
 
 
 </script>

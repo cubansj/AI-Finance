@@ -8,7 +8,7 @@ const route = useRoute();
 const riskLevel = ref(route.params.riskLevel || 'Default Risk');
 const investmentType = ref(route.params.asset || 'Default Investment');
 const aiContent = ref(route.query.aiContent || 'No AI response available');
-const description = ref('');
+//const description = ref('');
 
 // 返回到之前的页面
 const goBack = () => {
@@ -16,14 +16,14 @@ const goBack = () => {
 };
 
 // 页面挂载时获取路由参数
-onMounted(() => {
+/*onMounted(() => {
   description.value = ` We sincerely advise you: <br> `;
 
   // 将 AI 返回的结果直接加到 description 中
   if (aiContent.value) {
     description.value += ` ${aiContent.value}`;  // 直接追加 AI 返回的结果
   }
-});
+});*/
 </script>
 
 <template>
@@ -35,7 +35,7 @@ onMounted(() => {
 
     <div class="recommendation-content">
       <h2>Investment Details</h2>
-      <p v-html="description"></p>
+      <p v-html="aiContent"></p>
     </div>
   </div>
 </template>
