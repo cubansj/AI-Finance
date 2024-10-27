@@ -2,21 +2,33 @@ package com.aifinance.utils;
 
 import com.google.auth.oauth2.ServiceAccountCredentials;
 import com.google.cloud.storage.*;
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+@Component
 public class GCSUtil {
 
     private static final String BUCKET_NAME = "bucket-5620-ai-finance"; // 存储桶名称
-    private static final String JSON_PATH = "D:\\Documents\\2024S2\\5620\\5620Project\\backend\\project-439505-7a2ea3d63268.json"; // 替换为你的 JSON 文件路径
+    @Value("${gcs.credentials.jsonPath}")
+        private String jsonPath;
+
+    private static String staticJsonPath;
+
+    @PostConstruct
+    public void init() {
+        staticJsonPath = jsonPath;
+    }
 
     // 初始化 GCS 存储客户端
     private static Storage getStorage() throws Exception {
         return StorageOptions.newBuilder()
-                .setCredentials(ServiceAccountCredentials.fromStream(new FileInputStream(JSON_PATH)))
+                .setCredentials(ServiceAccountCredentials.fromStream(new FileInputStream(staticJsonPath)))
                 .build()
                 .getService();
     }

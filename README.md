@@ -54,13 +54,24 @@ The database schema can be found in the `5620_aifinance.sql` file, which is incl
 
 ---
 
-### 2. Configure `application.yml`:
+#### Configure `application.yml`:
 Navigate to `src/main/resources/application.yml` in your project. Update the following lines to ensure the application connects to your Google Cloud SQL instance:
 
 ```yml
 spring.datasource.url=jdbc:mysql://35.189.27.126:3306/aifinance
 spring.datasource.username=admin
 spring.datasource.password=123
+```
+
+---
+
+### 2. Connect to Google Cloud Storage Bucket
+
+We have created the bucket and included the gcs credentials jsonfile in the `backend` directory. All you need is to update the following lines in the `application.yml` to ensure the application can read the json file from the correct directory.
+```yml
+gcs:
+  credentials:
+    jsonPath: D:/Documents/2024S2/5620/5620Project/backend/project-439505-7a2ea3d63268.json
 ```
 
 ---
@@ -130,33 +141,35 @@ docker network create my-network
 ```
 ---
 
-## 2. Redis Service Configuration and Launch
+## 2. Redis Service Configuration 
 
-**Configure Redis Service with Environment Variables**
+Change the `application.yml` file in the backend service configure Redis connections:
 
-The application.yml file in the backend service uses environment variables to configure Redis connections:
-
-```yaml
+```yml
 spring:
   redis:
-    host: ${SPRING_REDIS_HOST:localhost}  # Uses SPRING_REDIS_HOST environment variable if available
+    host: redis  # change the host from localhost to redis
     port: 6379  # Default port
 ```
-
-**Steps to Set Environment Variables**
-
-To set environment variables on **Windows**:
-
-```powershell
-$env:SPRING_REDIS_HOST="redis"
-```
-
-Verify the environment variable:
-
-```powershell
-echo $env:SPRING_REDIS_HOST
-```
 ---
+
+## 3. Build the project for Docker
+
+**Backend build**
+1. Open a terminal and navigate to the backend directory
+2. Use Maven to build the project
+```bash
+   mvn clean package
+```
+3. After the build, the jar file will be generated in the target/ directory.
+
+**Frontend build**
+1.Open a terminal and navigate to the frontend directory
+2.Once the dependencies are installed, you can build the application by running:
+```bash
+npm run build
+```
+3.The static files will be generated in the dist/ directory.
 
 ## 3. Building and Launching Docker Containers
 
