@@ -24,18 +24,29 @@ const getUserInf = async () => {
 const updateUserFinanceInfo = async () => {
     console.log("----------", userFinanceStore);
 
+    // Fetch user info from the service
     let res = await userInfoGetService();
-    console.log("---------------------------------aaaa", res.data);
 
+    // Ensure financeInfo includes userId correctly
     const financeInfo = {
+        ...userFinanceStore.info,
+        userId: res.data.id  // Properly set userId here
+    };
 
-        ...userFinanceStore.info.userId = res.data.id
-    }
-    let result = await userFinanceInfoUpdateService(userFinanceInfo.value)
+    // Update userFinanceInfo with the latest financeInfo
+    userFinanceInfo.value = financeInfo;  // Assign financeInfo correctly to userFinanceInfo.value
+    console.log("---------------------------------aaaa", userFinanceInfo.value);
 
-    ElMessage.success(result.message ? result.message : 'Update successful')
-    userFinanceStore.setFinanceInfo(userFinanceInfo.value)
-}
+    // Call the update service with the updated finance info
+    let result = await userFinanceInfoUpdateService(userFinanceInfo.value);
+
+    // Display success message
+    ElMessage.success(result.message ? result.message : 'Update successful');
+
+    // Update the store with the latest finance info
+    userFinanceStore.setFinanceInfo(userFinanceInfo.value);
+};
+
 
 const rules = {
     balance: [
@@ -95,7 +106,7 @@ const rules = {
                     <el-form-item label="Has Loan" prop="hasLoan">
                         <el-switch v-model="userFinanceInfo.hasLoan" active-value="1" inactive-value="0"></el-switch>
                     </el-form-item>
-                    <el-form-item v-if="userFinanceInfo.hasLoan == 1" label="Loan Amount" prop="loanAmount">
+                    <el-form-item v-if="userFinanceInfo.hasLoan == True" label="Loan Amount" prop="loanAmount">
                         <el-input v-model="userFinanceInfo.loanAmount" type="number"></el-input>
                     </el-form-item>
                     <el-form-item label="Monthly Salary" prop="monthlySalary">
