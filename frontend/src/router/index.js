@@ -36,7 +36,7 @@ const routes = [
             { path: '/user/avatar', component: UserAvatarVUe },
             { path: '/user/password', component: UserResetPasswordVue },
             { path: '/docu', component: MarketList },
-            { path: '/docu/:stock/:question', component: Doc }
+            { path: '/docu/:stock/:question', component: Doc },
             { path: '/recommendation/:recommendation', component: InvestmentRecommendation },
             { path: '/investmentplan/:asset/:riskLevel', component: InvestmentPlan }
         ]

@@ -1,7 +1,8 @@
 import request from '@/utils/request.js'
 
 export const DocQuest = (data) => {
-    const prompt = data.question 
+    const prompt = data.question + `The stock symbol or company involved in this question is ${data.stockCode}`
+                                 + `And please provide me the link to related databases or sources`
                                     // + "Please refer to the following paragraph for the format" +
                                     // `In the 2023 10-K, Apple\'s product revenue distribution is as follows (in millions) \n
                                     // iPhone: $200,583 \n
