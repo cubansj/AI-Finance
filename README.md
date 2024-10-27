@@ -49,7 +49,7 @@ To connect to the Google Cloud SQL instance, you need to find your public IP add
 
 #### Create database in Google Cloud SQL
 
-The database schema can be found in the `5620_aifinance.sql` file, which is included in the `backend` catogory.
+The database schema can be found in the `5620_aifinance.sql` file, which is included in the `backend` directory.
 
 ---
 
@@ -96,7 +96,7 @@ Use IntelliJ IDEA to run your SpringBoot application. This can typically be done
 
 ### 1. Install Dependencies 
 
-Navigate to the frontend directory where the `package.json` file is located. Open a terminal in this directory and run the following command to install all necessary dependencies:
+Navigate to the `frontend` directory where the `package.json` file is located. Open a terminal in this directory and run the following command to install all necessary dependencies:
 ```sh
 npm install
 ```
