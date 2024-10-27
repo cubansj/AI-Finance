@@ -1,41 +1,70 @@
 # Part 1 Overview
 
+AI Finance is an intelligent investment and financial management platform designed to provide users with personalized, data-driven financial planning and investment management services. Leveraging advanced AI algorithms and financial data analysis, the platform conducts comprehensive assessments of users' financial profiles and risk preferences, offering tailored investment strategies and savings plans to maximize financial growth while managing risk.
+
+## Core Features
+
+**Investment Risk Assessment:**
+AI Finance evaluates users’ risk tolerance and investment preferences through a detailed questionnaire and data analysis, generating a personalized risk assessment report. This report helps users understand their risk tolerance levels in investments, allowing them to align with suitable investment strategies and products.
+
+**Daily Savings and Investment Advice:**
+Based on users' income, expenses, savings, and financial goals, AI Finance offers personalized advice for managing daily savings and investments. The platform can recommend savings and investment products, such as stocks, funds or bonds, tailored to users' risk assessment results, aiding in long-term wealth accumulation.
+
+**Market Insights and Information Retrieval:**
+AI Finance provides real-time financial market insights and information retrieval functions, covering major global financial markets. Users can access the latest market trends, real-time stock and fund prices, and essential financial news. Additionally, the platform supports in-depth information retrieval on specific companies and industries, empowering users to make informed investment decisions.
 ---
 
 # Part 2 Configuration
 
 ## Backend Setup
 
-### 1.Install MySQL
+### 1. Connect to Google Cloud SQL Instance
 
-**Download and Install MySQL**
-Visit the MySQL official website to download the MySQL Community Server for your operating system: [MySQL Downloads](https://dev.mysql.com/downloads/mysql/).Version 8.0.39 is what we use now. 
-Follow the installation guide provided during the download process. The installation wizard will guide you through the setup.
+#### Prerequisites
 
-**Configure MySQL**
-During installation, you will be prompted to set the root password. Do remember your password and make sure MySQL is set to run on the default port `3306`.
-Next you will need to create a database. Inside the database, you will create the following table. 
-Run the SQL query in the `5620_aifinance.sql` file to create necessary table for the project.
+Before connecting to a Google Cloud SQL instance, the following conditions must be met:
 
-**Connect Backend to MySQL using IntelliJ IDEA**
-Navigate to database in the IDEA ide, and add mysql as your datasource. 
-Connect to your mysql database using your user name and password your set when configure MySQL. 
+- A Cloud SQL instance running MySQL has been created on the Google Cloud Platform (GCP).
+- You have provided your public IP address to the administrator, who has configured it to allow access to the Cloud SQL instance.
+- MySQL Workbench or MySQL command-line tool is installed on your local machine.。
+
+#### Obtain Your Public IP Address
+
+To connect to the Google Cloud SQL instance, you need to find your public IP address and provide it to the administrator for access configuration.
+
+#### Connect to Google Cloud SQL Using MySQL Workbench
+
+1. **Open MySQL Workbench**。
+2. Click the “+” button at the top left to create a new connection.
+3. **Configure the connection settings**：
+   - **Connection Name**：project-439505:australia-southeast1:aifinance
+   - **Connection Method**：choose `Standard (TCP/IP)`。
+   - **Hostname**：Enter the public IP address of the Cloud SQL instance: `35.189.27.126`.
+   - **Port**：The default is 3306 (the MySQL port).
+   - **Username**：Enter the username configured in the Cloud SQL instance: admin.
+   - **Password**：Click “Store in Vault...” and enter the password configured in the Cloud SQL instance: 123.
+
+4. Click Test Connection to test the connection. If the test is successful, the connection is correctly configured.
+5. **Save and Connect:**：Click OK to save the connection settings, then click Connect to connect to your Cloud SQL instance.
+
+#### Create database in Google Cloud SQL
+
+The database schema can be found in the `5620_aifinance.sql` file, which is included in the `backend` catogory.
 
 ---
 
-### 2.Configure `application.yml`:
-Navigate to `src/main/resources/application.yml` in your project. Update the following lines to ensure the application connects to your MySQL instance:
+### 2. Configure `application.yml`:
+Navigate to `src/main/resources/application.yml` in your project. Update the following lines to ensure the application connects to your Google Cloud SQL instance:
 
 ```yml
-spring.datasource.url=jdbc:mysql://localhost:3306/your_database_name
-spring.datasource.username=your_mysql_username
-spring.datasource.password=your_mysql_password
+spring.datasource.url=jdbc:mysql://35.189.27.126:3306/aifinance
+spring.datasource.username=admin
+spring.datasource.password=123
 ```
-Replace `your_database_name` with the name of your database. So do the username and password.
 
 ---
 
-### 3.Install Redis as a service
+### 3. Install Redis as a service
 
 **Download Redis**
 https://github.com/tporadowski/redis/releases. Download the .zip file of the lastest vision and unzip it.
@@ -60,12 +89,12 @@ net start redis
 ```
 ---
 
-### 4.Run the Backend Application:
+### 4. Run the Backend Application:
 Use IntelliJ IDEA to run your SpringBoot application. This can typically be done by right-clicking on the main application file and selecting `Run`.
 
 ## Frontend Setup
 
-### 1.Install Dependencies 
+### 1. Install Dependencies 
 
 Navigate to the frontend directory where the `package.json` file is located. Open a terminal in this directory and run the following command to install all necessary dependencies:
 ```sh
@@ -73,7 +102,7 @@ npm install
 ```
 ---
 
-### 2.Run the Vue Project
+### 2. Run the Vue Project
 
 Once the dependencies are installed, you can start the Vue.js application by running:
 ```sh

@@ -1,8 +1,8 @@
 -- Create database
-create database 5620_aifinance;
+create database aifinance;
 
 -- Use the database
-use 5620_aifinance;
+use aifinance;
 
 -- create User table
 create table user (
