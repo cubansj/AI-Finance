@@ -143,12 +143,13 @@ docker network create my-network
 
 ## 2. Redis Service Configuration 
 
-Change the `application.yml` file in the backend service configure Redis connections:
+Make sure we have the application-prod.yml configuration file for production environment which included the following Redis configuration.
+Remember to active it when Starting the backend container later use -e paramater.
 
 ```yml
 spring:
   redis:
-    host: redis  # change the host from localhost to redis
+    host: redis  # change the host from localhost to redis for Docker environment
     port: 6379  # Default port
 ```
 ---
