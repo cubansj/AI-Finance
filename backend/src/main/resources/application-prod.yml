@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #    url: jdbc:mysql://localhost:3306/5620_aifinance
+    #    username: root
+    #    password: zpj123
+    url: jdbc:mysql://35.189.27.126:3306/aifinance
+    username: admin
+    password: 123
+  data:
+    redis:
+      #host: localhost
+      host: redis
+      port: 6379
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 50MB
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true #开启驼峰命名和下划线命名的自动转换
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+server:
+  port: 8080
+gcs:
+  credentials:
+    jsonPath: D:/Documents/2024S2/5620/5620Project/backend/project-439505-7a2ea3d63268.json
+
+openai.api.key: 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

@@ -183,7 +183,7 @@ npm run build
 
 2. **Start the backend container**
    ```bash
-   docker run -d --name aifinance-backend --network my-network -p 8080:8080 aifinance-backend
+   docker run -d --name aifinance-backend --network my-network -p 8080:8080 -e "SPRING_PROFILES_ACTIVE=prod" aifinance-backend 
    ```
 
 ### Launch Redis Service
@@ -225,11 +225,11 @@ Core code are a below.
 1. **Ensure the local `nginx.conf` file path is correct.**
 
 2. **Start the Nginx container**
-   ```bash
-   docker run -d --name nginx --network my-network -p 81:80 \    
-   -v D:/Documents/2024S2/5620/5620Project/frontend/nginx.conf:/etc/nginx/nginx.conf:ro \   
-   -v D:/Documents/2024S2/5620/5620Project/frontend/dist:/usr/share/nginx/html:ro nginx
-   ```
+```bash
+docker run -d --name nginx --network my-network -p 81:80 `
+-v D:/Documents/2024S2/5620/5620Project/frontend/nginx.conf:/etc/nginx/nginx.conf:ro `
+-v D:/Documents/2024S2/5620/5620Project/frontend/dist:/usr/share/nginx/html:ro nginx
+```
    Here，`D:/Documents/2024S2/5620/5620Project/frontend/nginx.conf` is the path to the `nginx.conf` file and
       `D:/Documents/2024S2/5620/5620Project/frontend/dist`is the path to the packaged frontend files. Modify these paths as needed.
 
