@@ -12,6 +12,7 @@ Based on users' income, expenses, savings, and financial goals, AI Finance offer
 
 **Market Insights and Information Retrieval:**
 AI Finance provides real-time financial market insights and information retrieval functions, covering major global financial markets. Users can access the latest market trends, real-time stock and fund prices, and essential financial news. Additionally, the platform supports in-depth information retrieval on specific companies and industries, empowering users to make informed investment decisions.
+
 ---
 
 # Part 2 Configuration
