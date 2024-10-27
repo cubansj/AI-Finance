@@ -64,11 +64,15 @@
         try {
             let result = await DocQuest(data);
             // console.log(result)
+            const urlRegex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
             const originAnswer = result.data.choices[0]?.message?.content || 'Something wrong'
             const formatAnswer = originAnswer.replace(/\n/g, '<br>')
                                         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                                         .replace(/\d\.\s/g, '');
-            answer.value = formatAnswer
+            const urlAnswer = formatAnswer.replace(urlRegex, (match, text, url) => {
+                                        return `<a href="${url}" target="_blank">${text}</a>`;
+                                        });
+            answer.value = urlAnswer
             loading.value = false
         } catch (error) {
             console.error("Error during AI request:", error);
@@ -137,4 +141,12 @@
         line-height: 1.5;
     }
 
+    :deep(a) {
+        color: #5b9bd5;
+        text-decoration: none;
+    }
+
+    :deep(a:hover) {
+        text-decoration: underline;
+    }
 </style>
