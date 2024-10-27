@@ -3,8 +3,8 @@ import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { sendAIRequest , AIUserProfile , AIRecommendation } from '@/api/investment.js';
 import { fetchUserDetailsService } from '@/api/investment.js';
-
 import { onBeforeRouteLeave } from 'vue-router';
+import { ElMessage } from 'element-plus';
 
 const router = useRouter();
 
@@ -100,17 +100,29 @@ const submitForm = async (e) => {
   e.preventDefault();
 
   if (!riskLevel.value) {
-    alert("Please select a risk tolerance level.");
+    ElMessage({
+      message: 'Please select a risk tolerance level.',
+      type: 'warning',
+      duration: 3000
+    });
     return;
   }
 
   if (selectedAssets.value.length === 0) {
-    alert("Please select at least one asset combination.");
+    ElMessage({
+      message: 'Please select at least one asset combination.',
+      type: 'warning',
+      duration: 3000
+    });
     return;
   }
 
   if (selectedAssets.value.length > 1) {
-    alert("Please select only one asset combination.");
+    ElMessage({
+      message: 'Please select only one asset combination.',
+      type: 'warning',
+      duration: 3000
+    });
     return;
   }
 
@@ -218,7 +230,11 @@ const confirmUserInfo = async () => {
           .replace(/\*(.+?)\*/g, '<i>$1</i>')
           .replace(/\n/g, '<br>');
     } else {
-      alert("error!please refresh");
+      ElMessage({
+        message: ' Format error! Please try again',
+        type: 'error',
+        duration: 3000
+      });
       return;
     }
 
@@ -312,7 +328,7 @@ onBeforeRouteLeave((to, from, next) => {
 
     <div class="container">
       <h2>Please Enter Your Investment Preferences</h2>
-      <form @submit="submitForm">
+      <form @submit.prevent="submitForm">
         <!-- 风险承受能力选择 -->
         <label for="risk-level">Select Risk Tolerance:</label>
         <select id="risk-level" v-model="riskLevel">
@@ -333,7 +349,7 @@ onBeforeRouteLeave((to, from, next) => {
           Commodities <input type="checkbox" v-model="selectedAssets" value="commodities">
         </label>
 
-        <button type="submit">Submit</button>
+        <el-button type="primary" native-type="submit">Submit</el-button>
       </form>
 
       <!-- 显示结果 -->
@@ -343,7 +359,8 @@ onBeforeRouteLeave((to, from, next) => {
         <ul>
           <li v-for="asset in assetAnalysis" :key="asset.name"
               @click="router.push({ path: `/investmentplan/${asset.name}/${riskLevel}`, query: { aiContent: aiContent } })">
-            {{ asset.name }}: <span v-html="asset.detail"></span>
+            <span :style="{ textDecoration: 'underline' }">{{ asset.name }}:</span>
+            <span v-html="asset.detail" ></span>
           </li>
         </ul>
       </div>
